@@ -3,6 +3,7 @@ import {
   Button,
   FormControl,
   Grid,
+  Input,
   InputLabel,
   MenuItem,
   Select,
@@ -35,7 +36,7 @@ const EmployeeForm = ({ data, onCancel, onSubmit }) => {
     firstName: "",
     lastName: "",
     designationId: "",
-    date: "",
+    resume: [""],
     salary: "",
   });
 
@@ -124,17 +125,7 @@ const EmployeeForm = ({ data, onCancel, onSubmit }) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item md={12} sx={{ width: 230 }}>
-            <TextField
-              fullWidth
-              type="date"
-              id="date"
-              label="Date  Of Joining"
-              name="date"
-              onChange={(e) => handleChange(e, "date")}
-              value={employeeData.date || ""}
-            />
-          </Grid>
+
           <Grid item md={12}>
             <TextField
               id="salary"
@@ -142,6 +133,16 @@ const EmployeeForm = ({ data, onCancel, onSubmit }) => {
               name="salary"
               onChange={(e) => handleChange(e, "salary")}
               value={employeeData.salary || ""}
+            />
+          </Grid>
+          <Grid item md={12} sx={{ mt: 1, mb: 2 }}>
+            <Input
+              id="resume"
+              label="Resume"
+              name="resume"
+              type="file"
+              onChange={(e) => handleChange(e, "resume")}
+              // value={employeeData.resume}
             />
           </Grid>
           <Grid container sx={{ mt: 1 }}>

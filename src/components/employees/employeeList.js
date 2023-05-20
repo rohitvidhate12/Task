@@ -42,18 +42,7 @@ const EmployeeList = ({ data, onAdd, onEdit, onDelete }) => {
         },
       },
     },
-    {
-      label: "Date of Joining",
-      name: "date",
-      options: {
-        sort: false,
-        filter: false,
-        customBodyRenderLite: (index) => {
-          const emppObj = data[index];
-          return new Date(emppObj.date)?.toLocaleDateString();
-        },
-      },
-    },
+
     {
       label: "Salary (PA)",
       name: "salary",
@@ -85,13 +74,18 @@ const EmployeeList = ({ data, onAdd, onEdit, onDelete }) => {
     },
   ];
 
+  const filteredData = data.map((item) => ({
+    ...item,
+    employeeName: `${item.firstName.toLowerCase()} ${item.lastName.toLowerCase()}`,
+  }));
+
   return (
     <>
       <Box>
         <Button variant="contained" onClick={onAdd}>
           Add ++
         </Button>
-        <MUIDataTable data={data} columns={columns} />
+        <MUIDataTable data={filteredData} columns={columns} />
       </Box>
     </>
   );

@@ -1,6 +1,20 @@
 import { Button, Grid, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 const Login = () => {
+  const [userData, setUserData] = useState({
+    userId: "",
+    password: "",
+  });
+
+  const handleChange = (e, name) => {
+    const { value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  console.log({ userData });
   return (
     <>
       <Grid
@@ -21,6 +35,7 @@ const Login = () => {
             id="userId"
             label="UserId"
             name="userId"
+            onChange={(e) => handleChange(e, "userId")}
           />
         </Grid>
         <Grid item md={12}>
@@ -30,9 +45,12 @@ const Login = () => {
             id="password"
             label="Password"
             name="password"
+            onChange={(e) => handleChange(e, "password")}
           />
         </Grid>
-        <Button fullWidth>Login</Button>
+        <Button fullWidth onClick={handleSubmit}>
+          Login
+        </Button>
       </Grid>
     </>
   );
